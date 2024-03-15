@@ -1,95 +1,59 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+
+//useEffect is client side so we have to specify this is a client-side component//
+
+import Image from 'next/image'
+import styles from './page.module.css'
+
+import gsap from 'gsap';
+import { useEffect, useRef } from 'react';
 
 export default function Home() {
+
+  //refs for the marquee paras//
+  const firstWelcome = useRef(null);
+  const secondWelcome = useRef(null);
+
+  //variables used in the animation
+  let xPercent = 0;
+  let direction = 1;
+
+  useEffect(() => {
+    requestAnimationFrame(animation)
+  }, [])
+
+  //animation to scroll the text to the right (because direction is positive, if -1 it would go left)//
+  const animation = () => {
+    //if out of bounds reset x: this achieves the infinite scroll//
+    if (xPercent <= -100) {
+      xPercent = 0
+    }
+    if (xPercent > 0) {
+      xPercent = -100
+    }
+    gsap.set(firstWelcome.current, {xPercent: xPercent})
+    gsap.set(secondWelcome.current, {xPercent: xPercent})
+    //multiplication sets speed of scroll//
+    xPercent += 0.1 * direction;
+    requestAnimationFrame(animation);
+  }
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+      {/* IMAGE ELEMENT LOOKS IN PUBLIC BY DEFAULT */}
+      <Image
+        src='/babyflower.jpeg'
+        alt='background'
+        fill={true}
         />
-      </div>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+        <div className={styles.sliderContainer}>
+          <div className={styles.slider}>
+            <p ref={firstWelcome}>WILKOMMEN BIENVENUE ALOHA </p>
+            <p ref={secondWelcome}> WILKOMMEN BIENVENUE ALOHA</p>
+          </div>
+        </div>
     </main>
-  );
+  )
+
 }
