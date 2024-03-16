@@ -39,13 +39,19 @@ export default function Lander() {
   }
 
   return (
-    <main className={styles.main}>
+    <section className={styles.lander}>
+      <div className={styles.splash}>
+        <h1 className={styles.myNameText}>Karl Dando</h1>
+
+      </div>
       {/* IMAGE ELEMENT LOOKS IN PUBLIC BY DEFAULT */}
-      <Image
+      {/* <Image
         src='/babyflower.jpeg'
         alt='background'
         fill={true}
-        />
+        /> */}
+
+        
 
         <div className={styles.sliderContainer}>
           <div className={styles.slider}>
@@ -54,7 +60,7 @@ export default function Lander() {
           </div>
         </div>
 
-    </main>
+      </section>
   )
 
 }

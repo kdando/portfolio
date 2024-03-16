@@ -5,10 +5,12 @@ export default function Home() {
 
 
   return (
-    <>
-    <h1>HELLO</h1>
+    <main style={{
+      margin: 0,
+      padding: 0,
+    }}>
     <Lander/>
-    </>
+    </main>
   )
 
 }
