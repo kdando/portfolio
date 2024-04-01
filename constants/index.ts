@@ -120,17 +120,17 @@ export const NavLinks = [
     link: "/",
   },
   {
-    name: "/my-skills",
+    name: "my-skills",
     icon: RxPerson,
     link: "/my-skills",
   },
   {
-    name: "/my-projects",
+    name: "my-projects",
     icon: RxDashboard,
     link: "/my-projects",
   },
   {
-    name: "/contact-me",
+    name: "contact-me",
     icon: RxClipboard,
     link: "/contact-me",
   },
