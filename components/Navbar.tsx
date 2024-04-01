@@ -10,7 +10,7 @@ export function Navbar () {
 
                 <div className='relative'>
                 <Image src="/horseLogo.jpg" alt="logo" width={40} height={40} className='w-full h-full object-contain rounded-full'/>
-                <h1 className='text-white text-[25px] font-semibold'>Karl Dando</h1>
+                <h1 className='text-white text-[25px] font-semibold'>Karl <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500"> Dando</span></h1>
                 </div>
                 
             </div>
